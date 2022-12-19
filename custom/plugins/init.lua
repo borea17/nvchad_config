@@ -2,7 +2,7 @@ local overrides = require "custom.plugins.overrides"
 
 return {
 
-  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
+  ["goolord/alpha-nvim"] = { disable = false }, -- enables dashboard
 
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
@@ -30,6 +30,15 @@ return {
     event = "InsertEnter",
     config = function()
       require("better_escape").setup()
+    end,
+  },
+
+  ["folke/which-key.nvim"] = {
+    disable = false,
+    config = function()
+      require("which-key").setup() {
+        -- configuration
+      }
     end,
   },
 
