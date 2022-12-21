@@ -36,9 +36,25 @@ return {
   ["folke/which-key.nvim"] = {
     disable = false,
     config = function()
-      require("which-key").setup() {
-        -- configuration
-      }
+      require("plugins.configs.whichkey")
+      local present, wk = pcall(require, "which-key")
+      if not present then
+        return
+      end
+      wk.register(
+        {
+          -- add group
+          ["<leader>"] = {
+            f = {name="+file"},
+            b = {name="+buffer"},
+            g = {name="+git"},
+            s = {name="+shell"},
+          }
+        }
+      )
+    end,
+    setup = function()
+      require("core.utils").load_mappings "whichkey"
     end,
   },
 
@@ -53,3 +69,4 @@ return {
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,
 }
+
